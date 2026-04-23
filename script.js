@@ -1,27 +1,22 @@
 let numeroSecreto = Math.floor(Math.random() * 100) + 1;
 
-function verificar() {
-    let numero = document.getElementById("numeroUsuario").value;
-    let mensaje = document.getElementById("mensaje");
+function verificarNumero() {
+  let intento = document.getElementById("inputNumero").value;
+  let mensaje = document.getElementById("mensaje");
 
-    numero = Number(numero);
+  intento = Number(intento);
 
-    if (!numero) {
-        mensaje.textContent = "⚠️ Escribe un número";
-        return;
-    }
-
-    if (numero === numeroSecreto) {
-        mensaje.textContent = "🎉 ¡ADIVINASTE!";
-    } else if (numero < numeroSecreto) {
-        mensaje.textContent = "🔼 El número es mayor";
-    } else {
-        mensaje.textContent = "🔽 El número es menor";
-    }
+  if (intento === numeroSecreto) {
+    mensaje.textContent = "🎉 ¡ADIVINASTE!";
+  } else if (intento < numeroSecreto) {
+    mensaje.textContent = "📉 El número es mayor";
+  } else {
+    mensaje.textContent = "📈 El número es menor";
+  }
 }
 
-function reiniciar() {
-    numeroSecreto = Math.floor(Math.random() * 100) + 1;
-    document.getElementById("mensaje").textContent = "";
-    document.getElementById("numeroUsuario").value = "";
+function reiniciarJuego() {
+  numeroSecreto = Math.floor(Math.random() * 100) + 1;
+  document.getElementById("mensaje").textContent = "";
+  document.getElementById("inputNumero").value = "";
 }
