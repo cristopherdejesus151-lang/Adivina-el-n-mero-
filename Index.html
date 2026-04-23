@@ -4,23 +4,91 @@
     <meta charset="UTF-8">
     <title>Adivina el Número</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px;
+            background: #22c55e;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        #mensaje {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🎯 Adivina el número</h1>
+    <h1>Adivina el número 🎯</h1>
 
     <input type="number" id="numeroUsuario" placeholder="Escribe un número">
 
-    <div class="botones">
-        <button onclick="verificar()">Comprobar</button>
-        <button onclick="reiniciar()" class="reset">Reiniciar</button>
-    </div>
+    <br>
+
+    <button onclick="verificar()">Comprobar</button>
+    <button onclick="reiniciar()">Reiniciar</button>
 
     <p id="mensaje"></p>
 </div>
 
-<script src="script.js"></script>
+<script>
+    let numeroSecreto = Math.floor(Math.random() * 100) + 1;
+
+    function verificar() {
+        let numero = document.getElementById("numeroUsuario").value;
+        let mensaje = document.getElementById("mensaje");
+
+        numero = Number(numero);
+
+        if (numero === numeroSecreto) {
+            mensaje.textContent = "🎉 ¡ADIVINASTE!";
+        } else if (numero < numeroSecreto) {
+            mensaje.textContent = "🔼 El número es mayor";
+        } else {
+            mensaje.textContent = "🔽 El número es menor";
+        }
+    }
+
+    function reiniciar() {
+        numeroSecreto = Math.floor(Math.random() * 100) + 1;
+        document.getElementById("mensaje").textContent = "";
+        document.getElementById("numeroUsuario").value = "";
+    }
+</script>
+
 </body>
 </html>
